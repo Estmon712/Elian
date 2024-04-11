@@ -12,13 +12,12 @@ class WiFi_Class{
   }request_type_t;
 
   void connect ();
-  void api_request (request_type_t type, String path, String data);
+  String api_request (request_type_t type, String path, String data);
   bool ping ();
   void set_credentials(char* ssid_1, char* pass_1);
   String get_Mac();
   void pub(uint8_t HR11, uint8_t HR22);
   String get_SP();
-  int* HumRelSP;
 
   private:
   static char* ssid; //Static para que sea estática en una posición en memoria y no se modifique su valor. Char* es un tipo de variable que es una cadena de caracteres.

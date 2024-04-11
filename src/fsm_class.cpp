@@ -3,10 +3,15 @@
 #include "pantalla.h"
 #include "wifi_class.h"
 #include "sensor.h"
+#include <ArduinoJson.h>
 
 Pantalla Pan;
 WiFi_Class Wifi;
 Sensor Sen;
+
+int HumRelSP = 0;
+
+DynamicJsonDocument Last_data2(2048);
 
 void FSM_Class::SET_STATE(int N){
   STATE_PRINCIPAL=N;
@@ -25,7 +30,9 @@ void FSM_Class::OPERATION(){
     break;
 
     case READ_SP:
-      Wifi.get_SP();
+      //Wifi.get_SP();
+      deserializeJson(Last_data2,Wifi.api_request(Wifi.GET,"GET",""));
+      HumRelSP = Last_data2["HumRelSP"];
       STATE_PRINCIPAL=READ_SENSORS;
     break;
 
@@ -35,10 +42,10 @@ void FSM_Class::OPERATION(){
     break;
 
     case ACT_PUMP:
-    if (Wifi.HumRelSP < Sen.lecturas[0])
-    {
+    //if (HumRelSP < Sen.lecturas[0])
+    //{
       /* code */
-    }
+    //}
     
       STATE_PRINCIPAL=SHOW_SCREEN;
     break;

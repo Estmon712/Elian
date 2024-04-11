@@ -28,11 +28,11 @@ void Pantalla::estado(uint8_t HR, String BOMBA, uint8_t HR1, uint8_t HR2){
     u8g2.setCursor(90,30);
     u8g2.print(BOMBA);
 
-    u8g2.drawStr(7, 45, "Sensor 1:");
+    u8g2.drawStr(7, 45, "Hum prom:");
     u8g2.setCursor(90,45);
-    u8g2.print(HR1);
+    u8g2.print((HR1+HR2)/2);
 
-    u8g2.drawStr(7, 60, "Sensor 2:");
+    u8g2.drawStr(7, 60, "Temperatura:");
     u8g2.setCursor(90,60);
     u8g2.print(HR2);
 

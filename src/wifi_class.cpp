@@ -76,16 +76,15 @@ void WiFi_Class::pub(uint8_t HR11, uint8_t HR22){
   JSON="";
 }
 
-String WiFi_Class::get_SP(){
+/* String WiFi_Class::get_SP(){
   api_request(GET,"GET","1");
   StaticJsonDocument<300> doc;
-  DeserializationError error = deserializeJson(doc, body_Get);
-  if (error) { return; }
+  deserializeJson(doc, body_Get);
   HumRelSP = doc["HumRelSP"];
   body_Get = "";
-}
+} */
 
-void WiFi_Class::api_request (request_type_t type, String path, String data){
+String WiFi_Class::api_request (request_type_t type, String path, String data){
   sclient.setCACert(test_root_ca);
   if (type == GET){
     Serial.println("GET Request");
@@ -107,6 +106,7 @@ void WiFi_Class::api_request (request_type_t type, String path, String data){
           String body = http.getString(); //Respuesta del servidor a la petición GET
           Serial.println(body);
           body_Get = body;
+          return body;
           //Interpretar respuesta
         }
       }
@@ -132,6 +132,7 @@ void WiFi_Class::api_request (request_type_t type, String path, String data){
           Serial.println("GET request success, code 200");
           String body = http.getString(); //Respuesta del servidor a la petición GET
           Serial.println(body);
+          return body;
           }
         }
       }
