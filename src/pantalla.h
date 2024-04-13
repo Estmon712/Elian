@@ -11,7 +11,7 @@ class Pantalla{
         HOOME
     };
     void init();
-    void estado(uint8_t HR, String BOMBA, uint8_t HR1, uint8_t HR2);
+    void estado(uint8_t HR, String BOMBA, uint8_t HR1, uint8_t HR2, float TEMP);
     int* arr = new int[3];
     private:
 };

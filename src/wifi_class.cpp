@@ -3,8 +3,8 @@
 #include <ArduinoJson.h>
 
 
-char* WiFi_Class::ssid = "Jorge"; //Usuario de WiFi
-char* WiFi_Class::pass = "Lui$2022*"; //Contraseña WiFi 
+char* WiFi_Class::ssid = "JHONIERM."; //Usuario de WiFi
+char* WiFi_Class::pass = "Alcaldia2019"; //Contraseña WiFi 
 String WiFi_Class::host = "http://192.168.82.33";
 String WiFi_Class::port = "3000";
 WiFiClient client;//Objeto de la clase client que le dice al servidor que el sistema embebido es el cliente
