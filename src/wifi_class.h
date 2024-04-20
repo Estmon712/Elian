@@ -16,7 +16,7 @@ class WiFi_Class{
   bool ping ();
   void set_credentials(char* ssid_1, char* pass_1);
   String get_Mac();
-  void pub(uint8_t HR11, uint8_t HR22);
+  void pub(uint8_t HR11, uint8_t HR22, float TEMPE, String VALEEST);
   String get_SP();
 
   private:

@@ -17,16 +17,16 @@ void Pantalla::init(){
     u8g2.setFont(u8g2_font_helvB10_tr);
     }
 
-void Pantalla::estado(uint8_t HR, String BOMBA, uint8_t HR1, uint8_t HR2, float TEMP){
+void Pantalla::estado(uint8_t HR, String VALVULA, uint8_t HR1, uint8_t HR2, float TEMP){
     u8g2.clearBuffer();
 
     u8g2.drawStr(7, 15, "Set Point:");
     u8g2.setCursor(90,15);
     u8g2.print(String(HR));
 
-    u8g2.drawStr(7, 30, "Bomba:");
+    u8g2.drawStr(7, 30, "Valvula:");
     u8g2.setCursor(90,30);
-    u8g2.print(BOMBA);
+    u8g2.print(VALVULA);
 
     u8g2.drawStr(7, 45, "Hum prom:");
     u8g2.setCursor(90,45);

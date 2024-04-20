@@ -12,8 +12,8 @@ void Sensor::lecturaSensor(){
     
     delay(1000);
 
-    lecturas[0] = map(analogRead(39), 0, 4096, 100, 0);
-    lecturas[1] = map(analogRead(34), 0, 4096, 100, 0);
+    lecturas[0] = map(analogRead(HREL1), 0, 4096, 100, 0);
+    lecturas[1] = map(analogRead(HREL2), 0, 4096, 100, 0);
 
     digitalWrite(23, LOW);
     digitalWrite(22, LOW);
@@ -22,6 +22,7 @@ void Sensor::lecturaSensor(){
 
     // read the ADC value from the temperature sensor
     int adcVal = analogRead(PIN_LM35);
+    Serial.println(adcVal);
     // convert the ADC value to voltage in millivolt
     float milliVolt = adcVal * (ADC_VREF_mV / ADC_RESOLUTION);
     // convert the voltage to the temperature in °C

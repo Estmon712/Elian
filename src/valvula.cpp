@@ -5,8 +5,8 @@ void Valv::init(){
 }
 
 void Valv::encendido(){
-    digitalWrite(21, HIGH);
+    digitalWrite(21, LOW);
 }
 void Valv::apagado(){
-    digitalWrite(21,LOW);
+    digitalWrite(21,HIGH);
 }
