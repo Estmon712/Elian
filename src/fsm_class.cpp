@@ -11,10 +11,12 @@ WiFi_Class Wifi;
 Sensor Sen;
 Valv Valve;
 
-int HumRelSP = 12;
+int HumRelSP = 60;
 float HumRelProm;
 uint8_t Valvu;
 String Mac;
+String Data;
+int a; //minutos*segundos*milis
 
 DynamicJsonDocument Last_data2(2048);
 
@@ -29,21 +31,22 @@ void FSM_Class::OPERATION(){
       Pan.init();
       Sen.init();
       Valve.init();
-      //Wifi.connect();
+      Wifi.connect();
       Mac = Wifi.get_Mac();
-      STATE_PRINCIPAL=READ_SP;
+      Serial.println(Mac);
+      STATE_PRINCIPAL=READ_SP;//
     break;
 
     case READ_SP:
-      //deserializeJson(Last_data2,Wifi.api_request(Wifi.GET,Mac,""));
-      //HumRelSP = Last_data2["setpoint"];
-      //Serial.print(HumRelSP);
+      deserializeJson(Last_data2,Wifi.api_request(Wifi.GET,Mac,""));      
+      HumRelSP = Last_data2["setpoint"];
+      Serial.print(HumRelSP);
       STATE_PRINCIPAL=READ_SENSORS;
     break;
 
     case READ_SENSORS:
       Sen.lecturaSensor();
-      STATE_PRINCIPAL=ACT_PUMP;
+      STATE_PRINCIPAL=ACT_PUMP;//
     break;
 
     case ACT_PUMP:
@@ -74,19 +77,20 @@ void FSM_Class::OPERATION(){
       Pan.estado(HumRelSP, "OFF", Sen.lecturas[0], Sen.lecturas[1], Sen.lecturas[2]);
     }
     
-      STATE_PRINCIPAL = UPL_DATA;
+      STATE_PRINCIPAL = UPL_DATA;//
     break;
 
     case UPL_DATA:
- /*    if (Valvu == 1){
+      if (Valvu == 1){
       Wifi.pub(Sen.lecturas[0], Sen.lecturas[1], Sen.lecturas[2], "ON");
+      a = 5*60*1000; //minutos*segundos*milis
     }
     else if (Valvu == 0){
       Wifi.pub(Sen.lecturas[0], Sen.lecturas[1], Sen.lecturas[2], "OFF");
+      a = 30*60*1000; //minutos*segundos*milis
     }
-      STATE_PRINCIPAL=READ_SP; */
       STATE_PRINCIPAL=READ_SP;
-      delay(5000);
+      delay(a);
     break;
   }
 }

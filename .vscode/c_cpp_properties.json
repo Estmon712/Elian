@@ -209,6 +209,7 @@
                 "C:/Users/estmo/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/dio_qspi/include",
                 "C:/Users/estmo/.platformio/packages/framework-arduinoespressif32/cores/esp32",
                 "C:/Users/estmo/.platformio/packages/framework-arduinoespressif32/variants/ch_denky",
+                "C:/Users/estmo/OneDrive/Escritorio/Elian/Code/lib/WiFiManager-master",
                 "C:/Users/estmo/.platformio/packages/framework-arduinoespressif32/libraries/ArduinoOTA/src",
                 "C:/Users/estmo/.platformio/packages/framework-arduinoespressif32/libraries/AsyncUDP/src",
                 "C:/Users/estmo/.platformio/packages/framework-arduinoespressif32/libraries/BLE/src",
@@ -443,6 +444,7 @@
                     "C:/Users/estmo/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/dio_qspi/include",
                     "C:/Users/estmo/.platformio/packages/framework-arduinoespressif32/cores/esp32",
                     "C:/Users/estmo/.platformio/packages/framework-arduinoespressif32/variants/ch_denky",
+                    "C:/Users/estmo/OneDrive/Escritorio/Elian/Code/lib/WiFiManager-master",
                     "C:/Users/estmo/.platformio/packages/framework-arduinoespressif32/libraries/ArduinoOTA/src",
                     "C:/Users/estmo/.platformio/packages/framework-arduinoespressif32/libraries/AsyncUDP/src",
                     "C:/Users/estmo/.platformio/packages/framework-arduinoespressif32/libraries/BLE/src",
@@ -475,7 +477,7 @@
                 ]
             },
             "defines": [
-                "PLATFORMIO=60114",
+                "PLATFORMIO=60115",
                 "ARDUINO_DENKY_WROOM32",
                 "BOARD_HAS_PSRAM",
                 "HAVE_CONFIG_H",

@@ -1,5 +1,7 @@
 #include "sensor.h"
 
+float tempTemp;
+
 void Sensor::init(){
     pinMode(23, OUTPUT);
     pinMode(22, OUTPUT);
@@ -21,12 +23,22 @@ void Sensor::lecturaSensor(){
     delay(1000);
 
     // read the ADC value from the temperature sensor
-    int adcVal = analogRead(PIN_LM35);
-    Serial.println(adcVal);
     // convert the ADC value to voltage in millivolt
-    float milliVolt = adcVal * (ADC_VREF_mV / ADC_RESOLUTION);
     // convert the voltage to the temperature in °C
-    float tempC = milliVolt / 10;
-    Serial.println(tempC);
-    lecturas[2] = tempC;
+    int adcVal = analogRead(PIN_LM35);
+    float milliVolt = adcVal * (ADC_VREF_mV / ADC_RESOLUTION);
+    float tempTemp = milliVolt / 10;
+
+    for (uint8_t i = 0; i < 30; i++)
+    {
+        int adcVal = analogRead(PIN_LM35);
+        float milliVolt = adcVal * (ADC_VREF_mV / ADC_RESOLUTION);
+        float tempC = milliVolt / 10;
+        tempTemp = tempTemp + tempC;
+        delay(100);
+    }
+    tempTemp = tempTemp/30;
+    lecturas[2] = tempTemp; 
+
+
 }

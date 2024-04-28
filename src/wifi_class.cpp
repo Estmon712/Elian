@@ -3,9 +3,10 @@
 #include <ArduinoJson.h>
 
 
+
 char* WiFi_Class::ssid = "JHONIERM."; //Usuario de WiFi
-char* WiFi_Class::pass = "Alcaldia2019"; //Contraseña WiFi 
-String WiFi_Class::host = "http://192.168.1.12";
+char* WiFi_Class::pass = "Alcaldia2019"; //Contraseña WiFi  
+String WiFi_Class::host = "http://192.168.1.62";
 String WiFi_Class::port = "8123";
 WiFiClient client;//Objeto de la clase client que le dice al servidor que el sistema embebido es el cliente
 
@@ -23,7 +24,9 @@ void WiFi_Class::connect (){
   while(WiFi.status() != WL_CONNECTED) {//WiFi.status devuelve una variable tipo struct interna que tiene la librería WiFi
     Serial.print(".");
     delay(500);
-  } 
+  }   
+
+
   
   Serial.println( "WiFi Conectado \n");
   Serial.print( "IP: ");
@@ -36,7 +39,7 @@ void WiFi_Class::pub(uint8_t HR11, uint8_t HR22,float TEMPE, String VALEEST){
   dat["humidity_1"] = HR11;
   dat["humidity_2"] = HR22;
   dat["temperature"] = TEMPE;
-  dat["valve_satus"] = VALEEST;
+  dat["valve_status"] = VALEEST;
   dat["device_mac"] = get_Mac();
   serializeJson(dat,JSON);
   Serial.println(JSON);
@@ -57,9 +60,8 @@ String WiFi_Class::api_request (request_type_t type, String path, String data){
   if (type == GET){
     Serial.println("GET Request");
     HTTPClient http; //Objeto de la clase HTTP que me permite usar las funcionalidades de HTTP
-    String url = host + ":" + port + "/device/setpoint/" + path;
+    String url = host + ":" + port + "/device/setpoint/" + path ;
     Serial.println(url);
-    //String url = "https://hook.us1.make.com/pb43xsx7dpiqphzcwm9eta4bmsrrxhjp";
 
     if (http.begin(client,url)){
       http.addHeader("Content-Type", "application/json");
@@ -67,6 +69,7 @@ String WiFi_Class::api_request (request_type_t type, String path, String data){
       //En internet hay tablas donde dice qué parámetros se puede enviar por content-type.
 
       int httpcode = http.GET();
+      Serial.println(httpcode);
       //Códigos de status HTTP:
       //200: OK / 400: Bad Request / 401: Unauthorized / 403: Forbidden / 402: Payment required / 404: Not Found 
       if (httpcode > 0){
@@ -83,8 +86,6 @@ String WiFi_Class::api_request (request_type_t type, String path, String data){
   }else if (type == POST){
     Serial.println("POST Request");
     HTTPClient http; //Objeto de la clase HTTP que me permite usar las funcionalidades de HTTP
-    //String url = host + ":" + port + "/" + path;
-    // String url = "https://hook.us1.make.com/pb43xsx7dpiqphzcwm9eta4bmsrrxhjp";
     String url = host + ":" + port + "/" + path + "/";
     if (http.begin(client,url)){
       http.addHeader("Content-Type", "application/json");
@@ -106,7 +107,6 @@ String WiFi_Class::api_request (request_type_t type, String path, String data){
       }
     }
   }
-
 
 void WiFi_Class::set_credentials(char* ssid_1, char* pass_1){
   ssid = ssid_1;
