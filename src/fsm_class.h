@@ -1,7 +1,7 @@
 #ifndef _FSM_CLASS_H_
 #define _FSM_CLASS_H_
 
-class FSM_Class{
+class FSM_Class{//Definición de la clase
   private:
   int STATE_PRINCIPAL;
 
@@ -10,7 +10,7 @@ class FSM_Class{
     INIT,
     READ_SP,
     READ_SENSORS,
-    ACT_PUMP,
+    ACT_VALV,
     SHOW_SCREEN,
     UPL_DATA  
   };

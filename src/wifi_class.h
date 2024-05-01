@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include <HTTPClient.h>
 
-class WiFi_Class{
+class WiFi_Class{//Definición de la clase
   public: //Los elementos de una clase que se declaran públicos se pueden acceder desde otras partes del código.
   typedef enum{
     GET,
@@ -20,7 +20,7 @@ class WiFi_Class{
   String get_SP();
 
   private:
-  static char* ssid; //Static para que sea estática en una posición en memoria y no se modifique su valor. Char* es un tipo de variable que es una cadena de caracteres.
+  static char* ssid; 
   static char* pass;
   static String host;
   static String port;

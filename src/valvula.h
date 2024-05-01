@@ -6,7 +6,7 @@
 #define VALVULA 0
 
 
-class Valv{
+class Valv{//Definición de la clase
     public:
     void init();
     void encendido();

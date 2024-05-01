@@ -1,8 +1,8 @@
 #include <Arduino.h>
 #include "include.h"
-#include <Wire.h>
-
 FSM_Class FSM;
+
+//Se realiza el void setup y el void loop con la clase FSM
 
 void setup() {
   FSM.SET_STATE(FSM.INIT);
